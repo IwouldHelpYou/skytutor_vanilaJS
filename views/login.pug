@@ -1,0 +1,18 @@
+doctype html
+html(lang="ko")
+  head
+    meta(charset="UTF-8")
+    title Document
+    link(rel="stylesheet", href="../css/style_login.css")
+    script(src="../router/login/login_UI")
+  body
+    h1#test 
+    form(action="/login_auth", method="post")
+      label 이름
+      input#id(type="text", name="email", maxlength="", required, autofocus)
+      br
+      label 비밀번호
+      input#pw(type="text", name="password", maxlength="6", required, autofocus)
+      br
+      input(type="submit", value="로그인")
+    a(href="/main") 메인드가자

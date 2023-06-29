@@ -1,0 +1,19 @@
+POST http://localhost:3000/login_auth
+Content-Type: application/x-www-form-urlencoded
+
+email=test@naver.com&password=11111&nickname=shit
+
+###
+
+POST http://localhost:3000/login_auth
+Content-Type: application/json; charset=UTF-8
+
+{
+    "email" : "test@naver.com",
+    "password" : "11111",
+    "nickname" : "sibalnum"
+}
+
+###
+
+GET http://localhost:3000/login_auth

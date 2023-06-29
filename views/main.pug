@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title Homepage
+    link(rel="stylesheet", type="text/css", href="../css/style_main.css")
+    script(type="text/javascript" src="main_client.js")
+
+  body
+    header
+      h1#test ⭐#{nickname}의 미니홈피⭐
+      nav
+        ul
+          li
+            a(href="#") 홈
+          li
+            a(href="#") 메뉴1
+          li
+            a(href="#") 메뉴2
+          li
+            a(href="#") 메뉴3
+          li#login_parent
+            a(href="/login")#login 로그인 
+    main
+      section
+        h2 소개
+        p 서버에서 말했어요 : #{fromServer}
+      section
+        h2 우리할 것
+        ul
+          li 플랫폼
+          li 개발
+    footer
+      p &amp;copy; 2023 My Website. All Rights Reserved.
