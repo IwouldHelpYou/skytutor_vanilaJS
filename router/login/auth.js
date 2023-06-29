@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 var authData = {
-    email: '채송화',
+    email: '손다솔',
     password: '11111', //암호화하여 소스코드밖으로 빼서 관리자도 못보도록
     nickname: 'Mr.JUNG-SUNG'
 }
