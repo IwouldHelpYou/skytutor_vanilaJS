@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 var authData = {
-    email: 'test@naver.com',
+    email: '채송화',
     password: '11111', //암호화하여 소스코드밖으로 빼서 관리자도 못보도록
     nickname: 'Mr.JUNG-SUNG'
 }
