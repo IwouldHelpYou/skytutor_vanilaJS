@@ -1,10 +1,11 @@
 const Sequelize = require('sequelize');
 // sequelize 패키지는 sequelize 클래스를 외부에 공개하는데 이를 가져온 것
 
-const config = require('../config/config.json')
+const env = process.env.NODE_ENV || 'development';
+const config = require('../config/config.js')[env];
 const {
   username, password, database, host, dialect,
-} = config.development;
+} = config;
 // config.json 의 정보를 그대로 가져옴
 
 const sequelize = new Sequelize(database, username, password, {
