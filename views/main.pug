@@ -3,7 +3,7 @@ html
   head
     title Homepage
     link(rel="stylesheet", type="text/css", href="../css/style_main.css")
-    script(type="text/javascript" src="main_client.js")
+    //script(type="text/javascript" src="main_client.js")
 
   body
     header
@@ -26,8 +26,94 @@ html
         p 서버에서 말했어요 : #{fromServer}
       section
         h2 우리할 것
-        ul
-          li 소중한 다솔아
-          li 내 옆에 있어줘서 항상 고마워♥ 
+        ul#todo
+          form#todo-form
+            input#todo-input(type='text', placeholder='Add todo')  
+            input(type='submit' value='add')
     footer
       p &amp;copy; 2023 My Website. All Rights Reserved.
+    script(type="text/javascript" src='../router/main/main_front.js')
+    script.
+      const todoForm = document.querySelector('#todo-form')
+      const todoInput = document.querySelector('#todo-form input');
+      todoForm.addEventListener('submit',onTodoSubmit);      
+      var todos = [];
+
+      function onTodoSubmit(e) {
+        e.preventDefault();
+        var newTodo = new Object();
+        newTodo.msg = todoInput.value;
+        newTodo.id = Date.now();
+        todos.push(newTodo);
+        todoInput.value='';    
+        paintTodo(newTodo);    
+      }
+
+      function paintTodo(newTodo) {
+        //TodoList 내용생성
+        const li = document.createElement('li');
+        const span = document.createElement('span');
+        let now = new Date();
+        span.innerText = `${newTodo.msg} (${now})ㅡ`;
+        span.id = newTodo.id;
+        li.appendChild(span);
+
+        //TodoList 수정/삭제/완료 버튼 생성
+        const button_remove = document.createElement('button');
+        const button_fix = document.createElement('button');
+        const button_clear = document.createElement('button');
+        button_remove.innerText = '삭제'
+        button_fix.innerText = '수정'
+        button_clear.innerText = '완료'
+        li.appendChild(button_remove);
+        li.appendChild(button_fix);
+        li.appendChild(button_clear);
+
+        //TodoList 추가
+        const todoList = document.querySelector('#todo');
+        todoList.appendChild(li);
+
+        button_remove.addEventListener('click', onTodoDelete);
+        button_fix.addEventListener('click', onTodofix);
+        button_clear.addEventListener('click', onTodoClear);
+      }
+
+      function onTodoDelete(event){
+        const li = event.target.parentElement;
+        li.remove();
+
+        // 남은 list 들로 DB 갱신하는 코드가 필요함
+
+        console.log(event.target.parentElement);
+        alert('넘어왔어용 이두3회완');
+      }
+
+      // 수정버튼을 누르면 일시적으로 라인이 사라지고 수정완료하면 수정된것이 나타남
+      function onTodofix(event){
+        const todoLi = event.target.parentElement;
+        const todoSpan = event.target.parentElement.querySelector("span");
+        todoLi.classList.add("hidden");
+
+        setTimeout(()=>{
+          const fixed_text = prompt("수정할 내용을 입력하세요");
+
+          if(fixed_text !== null){
+            todoSpan.innerText = fixed_text;
+            todoLi.classList.remove("hidden");
+          } else {
+            todoLi.classList.remove("hidden");
+          }
+         },100);
+         
+        setTimeout(()=>{
+          alert("수정완료!");
+        },500);
+         // 수정된 내용으로 DB 갱신하는 코드가 필요함
+      }
+
+      function onTodoClear(event){
+        const todoSpan = event.target.parentElement.querySelector("span");
+        todoSpan.classList.add("clear");
+        // 완료 버튼 눌렀을 때 기존 투두 취소선 긋는 코드
+      }
+

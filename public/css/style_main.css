@@ -2,6 +2,13 @@
 
 h1 {}
 
+.hidden {
+	display: none;
+}
+.clear {
+	text-decoration: line-through;	
+}
+
 body {
 	font-family: Arial, sans-serif;
 	margin: 0;
