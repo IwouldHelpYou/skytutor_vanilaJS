@@ -18,7 +18,8 @@ if(req.session.is_logined){
 router.get('/main', (req,res)=>{
     //res.sendFile(path.join(__dirname + main));
     const text = `된다 ㅎㅎㅎㅎㅎ`;
-    res.render('main',{fromServer : text});
+    const nickname = req.session.nickname
+    res.render('main',{fromServer : text, name : nickname});
 
     // 1. send 하면 그냥 main 이란 텍스트가 render 하면 main.pug가
     // 2. 세션으로 전달해줄수도 있고 아니면 쿼리를 통해 이전 post에서 받은거 쓸 수도 있음
